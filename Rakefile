@@ -1,3 +1,12 @@
+=begin
+    set_structure
+    set_directory
+    set_site_name
+    create_site_directory
+    create_content
+    create_file
+=end
+
 task :build do 
     structure = {
         'assets' => {
@@ -88,9 +97,7 @@ The folder "#{site_name}" already exists, are you sure you want to continue: Y o
 Note: we'll replace the directory completely!
         }
 
-        continue = STDIN.gets.strip
-        
-        if continue.match /y|Y/ then
+        if STDIN.gets.strip.match /y|Y/ then
             FileUtils.rm_r site_name # couldn't use Dir.rmdir unless the directory was actually empty
             Dir.mkdir site_name
             Dir.chdir site_name
